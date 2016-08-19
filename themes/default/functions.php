@@ -365,6 +365,10 @@ function amp_custom_style() {
     #something:target {
       display: block;
     } 
+    /* Hide JetPack Related Posts Heading */
+    .jp-relatedposts-headline {
+        display: none;
+    }
     /* Color Scheme start */
         <?php global $redux_builder_amp; ?>
         .nav_container{ 
