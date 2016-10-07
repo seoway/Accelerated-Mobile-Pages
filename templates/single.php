@@ -127,17 +127,18 @@
 	<?php } ?>
 	
 <?php 
-		$comments_meta = 2.50;
-		$whole = floor($comments_meta);     
-		$fraction = $comments_meta - $whole;
-		echo 'Rating: '.$comments_meta . '<br />' ;
+		// $comments_meta = 2.50;
+		// $whole = floor($comments_meta);     
+		// $fraction = $comments_meta - $whole;
+		// echo 'Rating: '.$comments_meta . '<br />' ;
 		
-	 for ($i=0; $i < $whole; $i++) { ?>
+	//  for ($i=0; $i < $whole; $i++) 
+	//  { ?>
 		<span class="star-icon full"> &#9734; </span>
-		<?php } 
-	 if ($fraction) { ?> 
+		<?php // } 
+	// if ($fraction) { ?> 
 	 	 <span class="star-icon half"> &#9734; </span>
-	 <?php }
+	 <?php // }
 ?>
 	
 	<amp-carousel width="600"
@@ -146,20 +147,20 @@
 	      type="carousel">
 			<?php
 				//Gather comments for a specific page/post 
-				 $postID = get_the_ID();
-				$comments = get_comments(array(
-					'post_id' => $postID,
-					'status' => 'approve' //Change this to the type of comments to be displayed
-				));
+				//  $postID = get_the_ID();
+				// $comments = get_comments(array(
+				// 	'post_id' => $postID,
+				// 	'status' => 'approve' //Change this to the type of comments to be displayed
+				// ));
 				//Display the list of comments
-				wp_list_comments( array(
-					'per_page' 					=> 10, //Allow comment pagination
-					'style' 						=> 'div',
-					'type'							=> 'comment',
-					'max_depth'   			=> 0,
-					'avatar_size'				=> 0,
-					'reverse_top_level' => false //Show the latest comments at the top of the list
-				), $comments);
+				// wp_list_comments( array(
+				// 	'per_page' 					=> 10, //Allow comment pagination
+				// 	'style' 						=> 'div',
+				// 	'type'							=> 'comment',
+				// 	'max_depth'   			=> 0,
+				// 	'avatar_size'				=> 0,
+				// 	'reverse_top_level' => false //Show the latest comments at the top of the list
+				// ), $comments);
 			?>
 	</amp-carousel>
 
