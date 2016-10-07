@@ -5,10 +5,50 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
 	<?php do_action( 'amp_post_template_head', $this ); ?>
+	
+	
+	<script async custom-element="amp-carousel" src="https://cdn.ampproject.org/v0/amp-carousel-0.1.js"></script>
 
 	<style amp-custom>
 	<?php $this->load_parts( array( 'style' ) ); ?>
 	<?php do_action( 'amp_post_template_css', $this ); ?>
+	
+	.comment {
+		/*width: 600px;*/
+		width: auto;
+	}
+	.comment.depth-1, .comment.depth-2 {
+		display: none;
+	}
+	.comment-content p {
+    white-space: initial;
+	}
+	
+	/* Unicode-based stars and half-star credit: amoniker, https://coderwall.com/p/iml9ka/star-ratings-in-css-utf8 */
+	 .star-icon {
+		 color: #ddd;
+		 font-size: 34px;
+		 position: relative;
+	 }
+
+	 .star-icon.full:before {
+		 color: #FDE16D;
+		 content: '\2605'; /* Full star in UTF8 */
+		 position: absolute;
+		 left: 0;
+		 text-shadow: 0 0 2px rgba(0,0,0,0.7);
+	 }
+
+	 .star-icon.half:before {
+		 color: #FDE16D;
+		 content: '\2605'; /* Full star in UTF8 */
+		 position: absolute;
+		 left: 0;
+		 width: 50%;
+		 overflow: hidden;
+		 text-shadow: 0 0 2px rgba(0,0,0,0.7);
+	 }
+	
 	</style>
 </head>
 <body class="single-post">
@@ -85,8 +125,91 @@
 		  	<?php } ?>
 		</div>
 	<?php } ?>
+	
+<?php 
+		$comments_meta = 2.50;
+		$whole = floor($comments_meta);     
+		$fraction = $comments_meta - $whole;
+		echo 'Rating: '.$comments_meta . '<br />' ;
+		
+	 for ($i=0; $i < $whole; $i++) { ?>
+		<span class="star-icon full"> &#9734; </span>
+		<?php } 
+	 if ($fraction) { ?> 
+	 	 <span class="star-icon half"> &#9734; </span>
+	 <?php }
+?>
+	
+	<amp-carousel width="600"
+	      height="300"
+	      layout="responsive"
+	      type="carousel">
+			<?php
+				//Gather comments for a specific page/post 
+				 $postID = get_the_ID();
+				$comments = get_comments(array(
+					'post_id' => $postID,
+					'status' => 'approve' //Change this to the type of comments to be displayed
+				));
+				//Display the list of comments
+				wp_list_comments( array(
+					'per_page' 					=> 10, //Allow comment pagination
+					'style' 						=> 'div',
+					'type'							=> 'comment',
+					'max_depth'   			=> 0,
+					'avatar_size'				=> 0,
+					'reverse_top_level' => false //Show the latest comments at the top of the list
+				), $comments);
+			?>
+	</amp-carousel>
 
+	<?php
+// $args = array(
+//   'meta_key' => 'ERRating',
+// 	'value' 	 => '1'
+// );
+ 
+// $args = array(
+//     'post__in' => $postID,
+// 		'meta_query' => array(
+//         'relation' => 'AND',
+//         array(
+//             'key' => 'ERRating',
+//             'value' => '4',
+//             'type' => 'numeric',
+//             'compare' => '>='
+//         ),
+//         array(
+//             'key' => 'ERRating',
+//             'value' => '4',
+//             'type' => 'numeric',
+//             'compare' => '>='
+//         )
+//     )
+// );
+// 
+// // The Query
+// $comments_query = new WP_Comment_Query;
+// $comments = $comments_query->query( $args );
+// 
+// 
+// $commentsId = $comments;
+// 
+// $reviewsNumber = get_comment_meta( $comments->comment_ID, 'ERRating' );
 
+// var_dump($commentsId);
+
+// Comment Loop
+// if ( $comments ) {
+// 	foreach ( $comments as $comment ) {
+// 		echo '<p>' . $comment->comment_content . '</p>';
+// 	}
+// } else {
+// 	echo 'No comments found.';
+// }
+?>
+	
+	
 <?php do_action( 'amp_post_template_footer', $this ); ?>
 </body>
 </html>
