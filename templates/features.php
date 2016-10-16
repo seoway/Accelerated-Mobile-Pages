@@ -8,7 +8,7 @@ function ampforwp_page_template_redirect_all_amp() {
 }
 add_action( 'template_redirect', 'ampforwp_page_template_redirect_all_amp' );
 
- Load AMP version by default to Mobile Vistors
+// Load AMP version by default to Mobile Vistors
 function ampforwp_page_template_redirect_all_amp_mobile() {
     if ( is_amp_endpoint() )
     return;
