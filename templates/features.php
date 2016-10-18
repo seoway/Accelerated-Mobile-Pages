@@ -1,10 +1,11 @@
-<?php 
+<?php
 /* This file will contain all the Extra FEATURES.
 
 1. Add Home REL canonical
 2. Custom Design
 3. Custom Style files
 4. Custom Header files
+4.5 Added hook to add more layout.
 5. Customize with Width of the site
 6. Add required Javascripts for extra AMP features
 7. Footer for AMP Pages
@@ -114,6 +115,9 @@
 			}
 			return $file;
 	}
+	
+	// 4.5 Added hook to add more layout.
+	do_action('ampforwp_after_features_include');
 
 
 	// 5.  Customize with Width of the site
@@ -568,7 +572,7 @@ add_action( 'amp_post_template_head', 'ampforwp_rel_canonical_archive' );
 
 // 18. Custom Canonical for Homepage
 function ampforwp_rel_canonical() {
-    if ( !is_home() || !is_front_page() ) 
+    if ( !is_home() ) 
     return;
 //    $link = esc_url( get_permalink( $id ) . AMP_QUERY_VAR . '/' );
     $homelink = get_home_url();
@@ -576,6 +580,16 @@ function ampforwp_rel_canonical() {
 }
 add_action( 'amp_post_template_head', 'ampforwp_rel_canonical' );
 
+// 18.5. Custom Canonical for Frontpage
+//function ampforwp_rel_canonical_frontpage() {
+//    if ( is_home() || is_front_page() ) 
+//    return;
+////    $link = esc_url( get_permalink( $id ) . AMP_QUERY_VAR . '/' );
+//    $homelink = get_home_url();
+//    echo "<link rel='canonical' href='$homelink' />\n";
+//}
+//add_action( 'amp_post_template_head', 'ampforwp_rel_canonical_frontpage' );
+ 
 // 19. Remove Canonical tags
 function ampforwp_amp_remove_actions() {
     if ( is_home() || is_front_page() || is_archive() ) {
