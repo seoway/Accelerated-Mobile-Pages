@@ -5,11 +5,11 @@
         <?php global $redux_builder_amp; ?>
 
         <?php if (true == ($redux_builder_amp['opt-media']['url'])) {  ?>
-          <a href="<?php bloginfo('url'); ?>">
+          <a href="<?php bloginfo('url'); ?>/amp">
               <amp-img src="<?php echo $redux_builder_amp['opt-media']['url']; ?>" width="190" height="36" alt="logo" class="amp-logo"></amp-img>
           </a>
         <?php } else {?>
-        <h1><a href="<?php bloginfo('url'); ?>"><?php bloginfo('name'); ?></a></h1>
+        <h1><a href="<?php bloginfo('url'); ?>/amp"><?php bloginfo('name'); ?></a></h1>
         <?php } ?>
 
       </div>
