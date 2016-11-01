@@ -128,7 +128,7 @@
 											            	<amp-img src="<?php echo $thumb_url_2 ?>" width="150" height="150" layout="responsive"></amp-img>
 																	<?php } ?>
 										                <div class="related_link">
-										                    <a href="<?php the_permalink(); ?><?php echo AMP_QUERY_VAR ;?>"><?php the_title(); ?></a>
+										                    <a href="<?php the_permalink(); ?>/amp"><?php the_title(); ?></a>
 										                    <?php $content = get_the_content();?>
 										                    <p><?php echo wp_trim_words( $content , '15' ); ?></p>
 										                </div>
