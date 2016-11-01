@@ -31,7 +31,7 @@
 
 			<div class="amp-wp-post-content">
 
-				<h2 class="amp-wp-title"> <a href="<?php the_permalink();?>"> <?php the_title(); ?></a></h2>
+				<h2 class="amp-wp-title"> <a href="<?php the_permalink();?>/amp"> <?php the_title(); ?></a></h2>
 
 				<?php $content = get_the_content();?>
 		        <p><?php echo wp_trim_words( $content , '15' ); ?></p>
